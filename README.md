@@ -39,7 +39,9 @@ Kaplan-Meier and log-rank results
 - IDHmut-codel vs IDHwt: p = 3.0e-33
 - IDHmut-non-codel vs IDHwt: p = 3.1e-44
 - The codel vs non-codel difference was not significant in the unadjusted log-rank test but was in the age-adjusted Cox model (HR 2.23), so age may confound the unadjusted comparison.
--- Figures: see /Figures
+- Figures: see /Figures
+# Example:
+![Kaplan-Meier overall survival by IDH/1p19q subtype](Figures/km-by-subtype.png)
 
 ## Limitations
 - LGG and GBM are pooled, so IDH-wildtype is dominated by GBM and molecular subtype is confounded with tumour grade and histology.
