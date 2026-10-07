@@ -16,3 +16,10 @@ Source: cBioPortal, TCGA PanCancer Atlas 2018 clinical patient files for LGG (lg
 Kaplan-Meier estimation of overall survival
 Pairwise log-rank tests between molecular subtype groups
 Cox proportional hazards regression of overall survival on age and IDH/1p19q group (IDHwt as reference)
+
+## Results
+| Covariate | Hazard ratio | 95% CI | p |
+|---|---|---|---|
+| Age (per year) | 1.05 | 1.04 to 1.06 | <0.005 |
+| IDHmut-non-codel (vs IDHmut-codel) | 2.23 | 1.34 to 3.72 | <0.005 |
+| IDHwt (vs IDHmut-codel) | 10.06 | 6.16 to 16.43 | <0.005 |
