@@ -13,9 +13,9 @@ Source: cBioPortal, TCGA PanCancer Atlas 2018 clinical patient files for LGG (lg
 - Subtype assignment: extracted molecular subtype from the TCGA SUBTYPE field into three groups: IDH-wildtype (IDHwt), IDH-mutant with 1p/19q codeletion (IDHmut-codel), and IDH-mutant without codeletion (IDHmut-non-codel). GBM samples labelled GBM were assigned IDHwt.
 - Cohort: LGG and GBM cohorts were concatenated into one pan-glioma dataset.
 - Survival analysis (lifelines):
-Kaplan-Meier estimation of overall survival
-Pairwise log-rank tests between molecular subtype groups
-Cox proportional hazards regression of overall survival on age and IDH/1p19q group (IDHmut-codel as reference)
+- Kaplan-Meier estimation of overall survival
+- Pairwise log-rank tests between molecular subtype groups
+- Cox proportional hazards regression of overall survival on age and IDH/1p19q group (IDHmut-codel as reference)
 
 ## Results
 Cox proportional hazards model (n = 607 patients, 195 deaths, 412 censored; reference group: IDHmut-codel)
