@@ -15,7 +15,7 @@ Source: cBioPortal, TCGA PanCancer Atlas 2018 clinical patient files for LGG (lg
 - Survival analysis (lifelines):
 Kaplan-Meier estimation of overall survival
 Pairwise log-rank tests between molecular subtype groups
-Cox proportional hazards regression of overall survival on age and IDH/1p19q group (IDHwt as reference)
+Cox proportional hazards regression of overall survival on age and IDH/1p19q group (IDHmut-codel as reference)
 
 ## Results
 Cox proportional hazards model (n = 607 patients, 195 deaths, 412 censored; reference group: IDHmut-codel)
@@ -34,13 +34,17 @@ Kaplan-Meier and log-rank results
 | IDHmut-codel | 167 | 21 | 134.3 |
 | IDHmut-non-codel | 252 | 54 | 87.5 |
 | IDHwt | 188 | 120 | 16.1 |
-- Pairwise log-rank p-values: [ ]
-- Figures: see /Figures
+- Pairwise log-rank p-values:
+-- IDHmut-codel vs IDHmut-non-codel: p = 0.073
+-- IDHmut-codel vs IDHwt: p = 3.0e-33
+-- IDHmut-non-codel vs IDHwt: p = 3.1e-44
+--- The codel vs non-codel difference was not significant in the unadjusted log-rank test but was in the age-adjusted Cox model (HR 2.23), so age may confound the unadjusted comparison.
+-- Figures: see /Figures
 
 ## Limitations
 - LGG and GBM are pooled, so IDH-wildtype is dominated by GBM and molecular subtype is confounded with tumour grade and histology.
 - The Cox model adjusts for age only.
-- The proportional hazards assumption was tested with Schoenfeld residuals. From there, Age and the IDHmut-non-codel indicator showed no violation while IDHwt indicator did (p = 0.032). Hence, the hazard ratio should be read as an average effect over follow-up instead of a constant one.
+- The proportional hazards assumption was tested with Schoenfeld residuals. Age (p = 0.37 rank-transformed, 0.87 KM-transformed) and the IDHmut-non-codel indicator (p = 0.37, 0.63) showed no violation. The IDHwt indicator showed significance with KM-transformed time (p = 0.032) but not with rank-transformed time (p = 0.29). Its hazard ratio should therefore be read as an average effect over follow-up rather than a constant one.
 - Retrospective TCGA data with limited treatment and follow-up information.
 
 ## Requirements
