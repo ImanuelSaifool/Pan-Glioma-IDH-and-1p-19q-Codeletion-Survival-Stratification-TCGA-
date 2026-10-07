@@ -18,8 +18,34 @@ Pairwise log-rank tests between molecular subtype groups
 Cox proportional hazards regression of overall survival on age and IDH/1p19q group (IDHwt as reference)
 
 ## Results
+Cox proportional hazards model (n = 607 patients, 195 deaths, 412 censored; reference group: IDHmut-codel)
 | Covariate | Hazard ratio | 95% CI | p |
 |---|---|---|---|
 | Age (per year) | 1.05 | 1.04 to 1.06 | <0.005 |
 | IDHmut-non-codel (vs IDHmut-codel) | 2.23 | 1.34 to 3.72 | <0.005 |
 | IDHwt (vs IDHmut-codel) | 10.06 | 6.16 to 16.43 | <0.005 |
+- Concordance index: 0.86
+- Likelihood ratio test: 281.89 on 3 df (p < 0.005)
+- Compared with IDH-mutant 1p/19q-codeleted tumours, risk of death was about 2-fold higher for IDH-mutant non-codeleted tumours and about 10-fold higher for IDH-wildtype tumours, after adjusting for age.
+
+Kaplan-Meier and log-rank results
+| Group | N | Events | Median OS (months) |
+|---|---|---|---|
+| IDHmut-codel | 167 | 21 | 134.3 |
+| IDHmut-non-codel | 252 | 54 | 87.5 |
+| IDHwt | 188 | 120 | 16.1 |
+- Pairwise log-rank p-values: [ ]
+- Figures: see figures/ (Kaplan-Meier curves by subtype).
+
+## Limitations
+- LGG and GBM are pooled, so IDH-wildtype is dominated by GBM and molecular subtype is confounded with tumour grade and histology.
+- The Cox model adjusts for age only.
+- The proportional hazards assumption was tested with Schoenfeld residuals. From there, Age and the IDHmut-non-codel indicator showed no violation while IDHwt indicator did (p = 0.032). Hence, the hazard ratio should be read as an average effect over follow-up instead of a constant one.
+- Retrospective TCGA data with limited treatment and follow-up information.
+
+## Requirements
+- Python 3
+- pandas
+- matplotlib
+- lifelines
+
