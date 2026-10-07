@@ -1,6 +1,9 @@
 # Imports
+import os
+
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 from lifelines import KaplanMeierFitter
 from lifelines.statistics import multivariate_logrank_test
 from lifelines.statistics import pairwise_logrank_test
@@ -33,7 +36,7 @@ Gdf = Gdf.dropna(subset=['OS_MONTHS', 'OS_STATUS'])
 # Combined data file
 combined_df = pd.concat([Igg_df, Gdf], ignore_index=True)
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Combined data file
+# Figures
 kmf = KaplanMeierFitter()
 kmf.fit(durations=combined_df['OS_MONTHS'], event_observed=combined_df['OS_STATUS'], label='All Patients')
 kmf.plot_survival_function()
@@ -42,13 +45,23 @@ plt.ylabel('Survival probability')
 plt.title('Overall survival: all patients')
 plt.show()
 
+os.makedirs("figures", exist_ok=True)
+fig, ax = plt.subplots(figsize=(10, 6))
+for g, d in combined_df.dropna(subset=['IDH_STATUS']).groupby('IDH_STATUS'):
+    KaplanMeierFitter().fit(d['OS_MONTHS'], d['OS_STATUS'], label=g).plot_survival_function(ax=ax)
+ax.set_xlabel('Months')
+ax.set_ylabel('Overall survival probability')
+ax.set_title('Overall survival by IDH/1p19q subtype (TCGA)')
+fig.savefig("figures/km_by_subtype.png", dpi=300, bbox_inches="tight")
+plt.show()
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 results = pairwise_logrank_test(
     event_durations=combined_df['OS_MONTHS'],
     groups=combined_df['IDH_STATUS'],
     event_observed=combined_df['OS_STATUS']
 )
+print(results.summary.to_string())
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 features = ['OS_MONTHS', 'OS_STATUS', 'AGE', 'IDH_STATUS']
 cox_df = combined_df[features].copy()
 
@@ -62,3 +75,11 @@ cox_df = cox_df.dropna()
 cph = CoxPHFitter()
 cph.fit(cox_df, duration_col='OS_MONTHS', event_col='OS_STATUS')
 cph.print_summary()
+
+for g, d in combined_df.dropna(subset=['IDH_STATUS']).groupby('IDH_STATUS'):
+    k = KaplanMeierFitter().fit(d['OS_MONTHS'], d['OS_STATUS'])
+    print(g, len(d), int(d['OS_STATUS'].sum()), round(k.median_survival_time_, 1))
+results.print_summary()
+
+cph.check_assumptions(cox_df, p_value_threshold=0.05, show_plots=True)
+
