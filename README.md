@@ -35,7 +35,7 @@ Kaplan-Meier and log-rank results
 | IDHmut-non-codel | 252 | 54 | 87.5 |
 | IDHwt | 188 | 120 | 16.1 |
 - Pairwise log-rank p-values: [ ]
-- Figures: see figures/ (Kaplan-Meier curves by subtype).
+- Figures: see km-by-subtype
 
 ## Limitations
 - LGG and GBM are pooled, so IDH-wildtype is dominated by GBM and molecular subtype is confounded with tumour grade and histology.
