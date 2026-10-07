@@ -35,10 +35,10 @@ Kaplan-Meier and log-rank results
 | IDHmut-non-codel | 252 | 54 | 87.5 |
 | IDHwt | 188 | 120 | 16.1 |
 - Pairwise log-rank p-values:
--- IDHmut-codel vs IDHmut-non-codel: p = 0.073
--- IDHmut-codel vs IDHwt: p = 3.0e-33
--- IDHmut-non-codel vs IDHwt: p = 3.1e-44
---- The codel vs non-codel difference was not significant in the unadjusted log-rank test but was in the age-adjusted Cox model (HR 2.23), so age may confound the unadjusted comparison.
+- IDHmut-codel vs IDHmut-non-codel: p = 0.073
+- IDHmut-codel vs IDHwt: p = 3.0e-33
+- IDHmut-non-codel vs IDHwt: p = 3.1e-44
+- The codel vs non-codel difference was not significant in the unadjusted log-rank test but was in the age-adjusted Cox model (HR 2.23), so age may confound the unadjusted comparison.
 -- Figures: see /Figures
 
 ## Limitations
