@@ -40,7 +40,7 @@ Kaplan-Meier and log-rank results
 - IDHmut-non-codel vs IDHwt: p = 3.1e-44
 - The codel vs non-codel difference was not significant in the unadjusted log-rank test but was in the age-adjusted Cox model (HR 2.23), so age may confound the unadjusted comparison.
 - Figures: see /Figures
-# Example:
+### Example:
 ![Kaplan-Meier overall survival by IDH/1p19q subtype](Figures/km-by-subtype.png)
 
 ## Limitations
