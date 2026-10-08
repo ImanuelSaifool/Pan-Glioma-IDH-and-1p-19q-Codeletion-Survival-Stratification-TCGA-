@@ -10,14 +10,14 @@ from lifelines.statistics import pairwise_logrank_test
 from lifelines import CoxPHFitter
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # lgg reading and cleaning
-Igg_df = pd.read_csv("C:\\Users\\imanu\\Downloads\\lgg_tcga_pan_can_atlas_2018\\lgg_tcga_pan_can_atlas_2018\\data_clinical_patient.txt", sep='\t', comment='#')
-Igg_df = Igg_df[Igg_df['IN_PANCANPATHWAYS_FREEZE'] == 'Yes']
-Igg_df.drop(columns=['FORM_COMPLETION_DATE','INFORMED_CONSENT_VERIFIED','OTHER_PATIENT_ID','ICD_O_3_HISTOLOGY', 'PRIMARY_LYMPH_NODE_PRESENTATION_ASSESSMENT', 'PATH_N_STAGE', 'PATH_M_STAGE', 'PATH_T_STAGE', 'AJCC_STAGING_EDITION', 'AJCC_PATHOLOGIC_TUMOR_STAGE', 'WEIGHT', 'DFS_MONTHS', 'DFS_STATUS', 'NEW_TUMOR_EVENT_AFTER_INITIAL_TREATMENT', 'PRIOR_DX'], inplace=True)
-Igg_df['OS_STATUS'] = Igg_df['OS_STATUS'].str[0].astype('Int64')
-Igg_df['DSS_STATUS'] = Igg_df['DSS_STATUS'].str[0].astype('Int64')
-Igg_df['PFS_STATUS'] = Igg_df['PFS_STATUS'].str[0].astype('Int64')
-Igg_df['IDH_STATUS'] = Igg_df['SUBTYPE'].str.extract(r'(IDHwt|IDHmut-codel|IDHmut-non-codel)')
-Igg_df = Igg_df.dropna(subset=['OS_MONTHS', 'OS_STATUS'])
+lgg_df = pd.read_csv("C:\\Users\\imanu\\Downloads\\lgg_tcga_pan_can_atlas_2018\\lgg_tcga_pan_can_atlas_2018\\data_clinical_patient.txt", sep='\t', comment='#')
+lgg_df = lgg_df[lgg_df['IN_PANCANPATHWAYS_FREEZE'] == 'Yes']
+lgg_df.drop(columns=['FORM_COMPLETION_DATE','INFORMED_CONSENT_VERIFIED','OTHER_PATIENT_ID','ICD_O_3_HISTOLOGY', 'PRIMARY_LYMPH_NODE_PRESENTATION_ASSESSMENT', 'PATH_N_STAGE', 'PATH_M_STAGE', 'PATH_T_STAGE', 'AJCC_STAGING_EDITION', 'AJCC_PATHOLOGIC_TUMOR_STAGE', 'WEIGHT', 'DFS_MONTHS', 'DFS_STATUS', 'NEW_TUMOR_EVENT_AFTER_INITIAL_TREATMENT', 'PRIOR_DX'], inplace=True)
+lgg_df['OS_STATUS'] = lgg_df['OS_STATUS'].str[0].astype('Int64')
+lgg_df['DSS_STATUS'] = lgg_df['DSS_STATUS'].str[0].astype('Int64')
+lgg_df['PFS_STATUS'] = lgg_df['PFS_STATUS'].str[0].astype('Int64')
+lgg_df['IDH_STATUS'] = lgg_df['SUBTYPE'].str.extract(r'(IDHwt|IDHmut-codel|IDHmut-non-codel)')
+lgg_df = lgg_df.dropna(subset=['OS_MONTHS', 'OS_STATUS'])
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # gbm reading and cleaning
 Gdf = pd.read_csv("C:\\Users\\imanu\\Downloads\\gbm_tcga_pan_can_atlas_2018\\gbm_tcga_pan_can_atlas_2018\\data_clinical_patient.txt", sep='\t', comment='#')
@@ -34,7 +34,7 @@ Gdf['DSS_STATUS'] = Gdf['DSS_STATUS'].str[0].astype('Int64')
 Gdf = Gdf.dropna(subset=['OS_MONTHS', 'OS_STATUS'])
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Combined data file
-combined_df = pd.concat([Igg_df, Gdf], ignore_index=True)
+combined_df = pd.concat([lgg_df, Gdf], ignore_index=True)
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Figures
 kmf = KaplanMeierFitter()
